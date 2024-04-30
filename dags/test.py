@@ -7,7 +7,7 @@ def print_hello():
     return 'Hello world!'
 
 # Buat objek DAG dengan nama 'hello_world_dag' dan jadwalnya diatur menjadi sekali sehari
-dag = DAG('hello_world_dag', description='Simple DAG for testing Airflow',
+dag = DAG('hello_world_dag_new', description='Simple DAG for testing Airflow',
           schedule_interval='@daily',
           start_date=datetime(2022, 1, 1), catchup=False)
 
