@@ -13,7 +13,7 @@ dag = DAG('hello_world_dag', description='Simple DAG for testing Airflow',
 
 # Buat operator Python dengan tugas print_hello
 print_hello_task = PythonOperator(
-    task_id='print_hello_task',
+    task_id='print_hello_task1',
     python_callable=print_hello,
     dag=dag,
 )
