@@ -1,6 +1,7 @@
 from airflow import DAG
 from airflow.operators.python_operator import PythonOperator
 from datetime import datetime
+import pandas as pd
 
 # Fungsi yang akan dieksekusi oleh operator Python
 def print_hello():
