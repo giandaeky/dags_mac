@@ -10,7 +10,7 @@ default_args = {
 
 def read_excel_task():
     excel_file_path = 'https://github.com/giandaeky/dags_mac/blob/7aabecd40382f271e040245cf28412fbfae0531f/external_code/file_example_XLS_10.xls'  
-    df = pd.read_excel(excel_file_path)
+    df = pd.read_excel(excel_file_path, engine='openpyxl')
     print(df.head()) 
 
 
