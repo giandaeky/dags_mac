@@ -9,7 +9,7 @@ default_args = {
 }
 
 def read_excel_task():
-    excel_file_path = '/Users/giandaeky/Gianda/Deployment/airflow/excel/file_example_XLS_10.xls'  
+    excel_file_path = 'external_code/file_example_XLS_10.xls'  
     df = pd.read_excel(excel_file_path)
     print(df.head()) 
 
