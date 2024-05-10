@@ -7,8 +7,14 @@ default_args = {
     'owner': 'airflow',
     'start_date': datetime(2024, 5, 10),
 }
+# def read_excel_task():
+#     excel_file_path = 'https://github.com/giandaeky/dags_mac/blob/2caf89a012fcda22c6b606a24f73c111fbb37194/external_code/file_example_XLSX_10.xlsx'
+#     df = pd.read_excel(excel_file_path)
+#     print(df.head()) 
+
+
 def read_excel_task():
-    excel_file_path = 'https://github.com/giandaeky/dags_mac/blob/2caf89a012fcda22c6b606a24f73c111fbb37194/external_code/file_example_XLSX_10.xlsx'
+    excel_file_path = 'https://raw.githubusercontent.com/giandaeky/dags_mac/2caf89a012fcda22c6b606a24f73c111fbb37194/external_code/file_example_XLSX_10.xlsx'
     df = pd.read_excel(excel_file_path)
     print(df.head()) 
 
