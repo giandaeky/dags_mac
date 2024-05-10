@@ -7,11 +7,11 @@ default_args = {
     'owner': 'airflow',
     'start_date': datetime(2024, 5, 10),
 }
-
 def read_excel_task():
-    excel_file_path = 'https://github.com/giandaeky/dags_mac/blob/7d94db234f60972e50e16e9374ee7cca4fa963e2/external_code/file_example_XLSX_10.xlsx'  
+    excel_file_path = 'https://raw.githubusercontent.com/giandaeky/dags_mac/7d94db234f60972e50e16e9374ee7cca4fa963e2/external_code/file_example_XLSX_10.xlsx'
     df = pd.read_excel(excel_file_path)
     print(df.head()) 
+
 
 
 with DAG(
