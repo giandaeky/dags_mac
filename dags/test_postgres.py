@@ -13,9 +13,9 @@ from airflow.operators.python_operator import PythonOperator
 
 def query_postgres_and_print_to_pandas():
     
-    postgres_hook = PostgresHook(postgres_conn_id='my_postgres_connection') 
+    postgres_hook = PostgresHook(postgres_conn_id='postgre') 
    
-    df = postgres_hook.get_pandas_df("SELECT * FROM your_table_name;") 
+    df = postgres_hook.get_pandas_df("SELECT * FROM public.users") 
     print(df)
 
 default_args = {
