@@ -1,6 +1,6 @@
 from airflow import DAG
 from airflow.operators.postgres_operator import PostgresOperator
-from datetime import datetime
+from datetime import datetime,timedelta
 
 # Tentukan argumen default untuk DAG
 default_args = {
