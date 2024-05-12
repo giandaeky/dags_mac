@@ -2,7 +2,20 @@ from airflow import DAG
 from airflow.operators.postgres_operator import PostgresOperator
 from datetime import datetime,timedelta
 
-# Tentukan argumen default untuk DAG
+
+import pandas as pd
+from airflow.hooks.postgres_hook import PostgresHook
+
+
+
+
+def query_postgres_and_print_to_pandas():
+    
+    postgres_hook = PostgresHook(postgres_conn_id='my_postgres_connection') 
+   
+    df = postgres_hook.get_pandas_df("SELECT * FROM your_table_name;") 
+    print(df)
+
 default_args = {
     'owner': 'airflow',
     'depends_on_past': False,
@@ -13,18 +26,16 @@ default_args = {
     'retry_delay': timedelta(minutes=1),
 }
 
-# Buat DAG
+
 dag = DAG(
     'print_postgres_table',
     default_args=default_args,
     description='mencetak isi tabel PostgreSQL',
     schedule_interval=None,
 )
-
-print_table_task = PostgresOperator(
-    task_id='print_table_task',
-    postgres_conn_id='postgre', 
-    sql="SELECT * FROM public.users",  
+print_table_task = PythonOperator(
+    task_id='print_table_to_pandas_task',
+    python_callable=query_postgres_and_print_to_pandas,
     dag=dag,
 )
 
