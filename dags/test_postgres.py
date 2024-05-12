@@ -6,6 +6,8 @@ from datetime import datetime,timedelta
 import pandas as pd
 from airflow.hooks.postgres_hook import PostgresHook
 
+from airflow.operators.python_operator import PythonOperator
+
 
 
 
