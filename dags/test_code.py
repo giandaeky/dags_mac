@@ -29,7 +29,7 @@ def read_excel_task():
 
 
 with DAG(
-    'example_dag123',
+    'example_dag1234',
     default_args=default_args,
     description='Contoh DAG untuk membaca file Excel dalam Airflow di Kubernetes dengan GitSync',
     schedule_interval=None,
