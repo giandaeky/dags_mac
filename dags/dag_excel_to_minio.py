@@ -3,10 +3,14 @@ from datetime import datetime
 
 from airflow import DAG
 from airflow.operators.python_operator import PythonOperator
-from airflow.utils.dates import days_ago
+# from airflow.utils.dates import days_ago
 from minio import Minio
 import pandas as pd
-from airflow.hooks.base_hook import BaseHook
+# from airflow.hooks.base_hook import BaseHook
+# from airflow.providers.amazon.aws.operators.s3 import (
+#     S3PutBucketTaggingOperator,
+# )
+
 
 def read_file_from_minio():
     # conn = BaseHook.get_connection('minio_default')
@@ -17,7 +21,7 @@ def read_file_from_minio():
         secure=False  
     )
     bucket_name = "bucketrumah"
-    file_name = "file_example_XLSX_10.xlsx"
+    file_name = "bucketrumah/file_example_XLSX_10.xlsx"
     data = client.get_object(bucket_name, file_name)
     df = pd.read_csv(data)
     print(df.head())
