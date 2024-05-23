@@ -6,31 +6,37 @@ from airflow.operators.python_operator import PythonOperator
 # from airflow.utils.dates import days_ago
 from minio import Minio
 import pandas as pd
-# from airflow.hooks.base_hook import BaseHook
+from airflow.hooks.base_hook import BaseHook
+import io
+
 # from airflow.providers.amazon.aws.operators.s3 import (
 #     S3PutBucketTaggingOperator,
 # )
 
-
 def read_file_from_minio():
-    # conn = BaseHook.get_connection('minio_default')
+    conn = BaseHook.get_connection('minio')  # Menggunakan conn_id yang didefinisikan di UI Airflow
     client = Minio(
-        "10.111.24.253",
-        access_key="dirumah",
-        secret_key="dirumah123",
-        secure=False  
+        conn.host,
+        access_key=conn.login,
+        secret_key=conn.password,
+        secure=conn.schema == 'https'  # Set to True if using HTTPS
     )
     bucket_name = "bucketrumah"
-    file_name = "bucketrumah/file_example_XLSX_10.xlsx"
-    data = client.get_object(bucket_name, file_name)
-    df = pd.read_csv(data)
+    file_name = "file_example_XLSX_10.xlsx"
+
+    # Get the object from MinIO
+    response = client.get_object(bucket_name, file_name)
+    data = response.read()
+
+    # Load data into a DataFrame
+    df = pd.read_excel(io.BytesIO(data))
     print(df.head())
 
 default_args = {
     'owner': 'airflow',
     'depends_on_past': False,
     'start_date': datetime(2024, 1, 1),
-    # 'retries': 1,
+    'catchup': False,
 }
 
 dag = DAG(
@@ -53,5 +59,5 @@ read_task = PythonOperator(
 #     dag=dag,
 # )
 
-
+read_task
 # run_external_script
