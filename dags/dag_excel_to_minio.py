@@ -66,7 +66,7 @@ CREATE TABLE IF NOT EXISTS master.test1
     "Country" character varying(50) COLLATE pg_catalog."default",
     "Age" integer,
     "Date" date,
-    CONSTRAINT test_pkey PRIMARY KEY (id)
+    CONSTRAINT test_pkey1 PRIMARY KEY (id)
 )
 
     """)
