@@ -55,7 +55,7 @@ def insert_to_postgres():
     hook = PostgresHook(postgres_conn_id='postgre')
     connection = hook.get_conn()
     cursor = connection.cursor()
-    insert_query = "INSERT INTO master.test (id,Frist_name, Last_name,Gender, Country,Age,Date) VALUES (%s, %s,%s,%s,%s,%s,%s)"
+    insert_query = "INSERT INTO master.test (id,Frist_name,Last_name,Gender,Country,Age,Date) VALUES (%s,%s,%s,%s,%s,%s,%s)"
     cursor.executemany(insert_query, records)
     connection.commit()
     cursor.close()
