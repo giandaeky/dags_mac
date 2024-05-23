@@ -73,7 +73,7 @@ CREATE TABLE IF NOT EXISTS master.test1
 
 
 
-    insert_query = "INSERT INTO master.test1 (Frist_name,Last_name,Gender,Country,Age,Date) VALUES (%s,%s,%s,%s,%s,%s)"
+    insert_query = "INSERT INTO master.test1 (id,Frist_name,Last_name,Gender,Country,Age,Date) VALUES (%s,%s,%s,%s,%s,%s,%s)"
     cursor.executemany(insert_query, records)
     connection.commit()
     cursor.close()
