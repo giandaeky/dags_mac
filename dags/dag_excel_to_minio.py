@@ -19,7 +19,7 @@ def read_file_from_minio():
         conn.host,
         access_key=conn.login,
         secret_key=conn.password,
-        secure=conn.schema == 'https'  # Set to True if using HTTPS
+        # secure=conn.schema == 'true'  # Set to True if using HTTPS
     )
     bucket_name = "bucketrumah"
     file_name = "file_example_XLSX_10.xlsx"
