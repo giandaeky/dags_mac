@@ -16,8 +16,8 @@ import io
 def read_file_from_minio():
     conn = BaseHook.get_connection('minio_2')  
     client = Minio(
-        conn.host,
-        access_key=conn.login,
+        host=conn.host,
+        access_key=conn.login, 
         secret_key=conn.password,
         secure=False  # Set to True if using HTTPS
     )
