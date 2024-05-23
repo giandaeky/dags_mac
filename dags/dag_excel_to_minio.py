@@ -28,8 +28,8 @@ def read_file_from_minio():
     response = client.get_object(bucket_name, file_name)
     data = response.read()
 
-    df = pd.read_excel(io.BytesIO(data))
-    df = pd.DataFrame(df)
+    df1 = pd.read_excel(io.BytesIO(data))
+    df = pd.DataFrame(df1)
     # print(df.head())
     return df
 
