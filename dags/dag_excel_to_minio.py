@@ -44,7 +44,7 @@ def insert_to_postgres(df):
     # cursor.executemany(insert_query, records)
     # connection.commit()
     # cursor.close()
-    connection.close()
+    # connection.close()
     
 
 default_args = {
