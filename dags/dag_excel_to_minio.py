@@ -3,14 +3,23 @@ from datetime import datetime
 from airflow.operators.bash_operator import BashOperator
 
 
-# def print_hello():
-#     return ' world!'
 
-dag = DAG('dag_excel_to_minio', 
-          description='step1',
-          schedule_interval='@once',
-        #   start_date=datetime(2022, 1, 1), catchup=False
-          )
+
+default_args = {
+    'owner': 'airflow',
+    'depends_on_past': False,
+    # 'start_date': datetime(2023, 1, 1),
+    'retries': 1,
+}
+
+dag = DAG(
+    'dag_excel_to_minio',
+    default_args=default_args,
+    description='Run external Python script once',
+    schedule_interval='@once',
+    catchup=False
+)
+
 
 
 run_external_script = BashOperator(
