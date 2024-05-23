@@ -28,21 +28,36 @@ def read_file_from_minio():
     response = client.get_object(bucket_name, file_name)
     data = response.read()
 
-    df1 = pd.read_excel(io.BytesIO(data))
-    df = pd.DataFrame(df1)
-    # print(df.head())
+    df = pd.read_excel(io.BytesIO(data))
+    print(df.head())
     return df
 
 
-def insert_to_postgres(df):
+def insert_to_postgres():
+    conn = BaseHook.get_connection('minio')  
+    client = Minio(
+        "10.111.24.253:9000",
+        access_key=conn.login, 
+        secret_key=conn.password,
+        secure=False
+    )
+    bucket_name = "bucketrumah"
+    file_name = "file_example_XLSX_10.xlsx"
+
+    response = client.get_object(bucket_name, file_name)
+    data = response.read()
+
+    df = pd.read_excel(io.BytesIO(data))
+    # print(df.head())
+   
+   
     records = df.to_records(index=False).tolist()
-    print(records.head())
     hook = PostgresHook(postgres_conn_id='postgre')
     connection = hook.get_conn()
     cursor = connection.cursor()
-    # insert_query = "INSERT INTO master.test (id,Frist_name, Last_name,Gender, Country,Age,Date) VALUES (%s, %s,%s,%s,%s,%s,%s)"
-    # cursor.executemany(insert_query, records)
-    # connection.commit()
+    insert_query = "INSERT INTO master.test (id,Frist_name, Last_name,Gender, Country,Age,Date) VALUES (%s, %s,%s,%s,%s,%s,%s)"
+    cursor.executemany(insert_query, records)
+    connection.commit()
     cursor.close()
     connection.close()
     
