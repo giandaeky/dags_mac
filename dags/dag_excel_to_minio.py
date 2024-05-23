@@ -8,26 +8,29 @@ from minio import Minio
 import pandas as pd
 from airflow.hooks.base_hook import BaseHook
 import io
-from airflow.providers.amazon.aws.hooks.s3 import S3Hook
+
 # from airflow.providers.amazon.aws.operators.s3 import (
 #     S3PutBucketTaggingOperator,
 # )
 
 def read_file_from_minio():
-    s3 = S3Hook(aws_conn_id='minio_s3')
+    conn = BaseHook.get_connection('minio_2')  # Menggunakan conn_id yang didefinisikan di UI Airflow
+    client = Minio(
+        conn.host,
+        access_key=conn.login,
+        secret_key=conn.password,
+        secure=conn.schema == 'https'  # Set to True if using HTTPS
+    )
     bucket_name = "bucketrumah"
     file_name = "file_example_XLSX_10.xlsx"
 
-    # Get the file object from MinIO using S3Hook
-    obj = s3.get_key(key=file_name, bucket_name=bucket_name)
-
-    # Read the file content
-    data = obj.get()["Body"].read()
+    # Get the object from MinIO
+    response = client.get_object(bucket_name, file_name)
+    data = response.read()
 
     # Load data into a DataFrame
     df = pd.read_excel(io.BytesIO(data))
     print(df.head())
-
 
 default_args = {
     'owner': 'airflow',
