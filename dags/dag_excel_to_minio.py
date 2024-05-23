@@ -30,7 +30,7 @@ def read_file_from_minio():
 
     df = pd.read_excel(io.BytesIO(data))
     print(df.head())
-    return df
+    # return df
 
 
 def insert_to_postgres():
