@@ -16,7 +16,7 @@ import io
 def read_file_from_minio():
     # conn = BaseHook.get_connection('minio_2')  # Menggunakan conn_id yang didefinisikan di UI Airflow
     client = Minio(
-        "gianda-minio.com:9000",
+        "10.111.24.253:9000",
         access_key="dirumah",
         secret_key="dirumah123",
         secure=False  # Set to True if using HTTPS
