@@ -15,7 +15,7 @@ import pandas as pd
 def read_file_from_minio():
     # conn = BaseHook.get_connection('minio_default')
     client = Minio(
-        "gianda-minio.com",
+        "10.111.24.253",
         access_key="dirumah",
         secret_key="dirumah123",
         secure=False  
