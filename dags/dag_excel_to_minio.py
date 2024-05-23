@@ -48,10 +48,10 @@ def insert_to_postgres():
     data = response.read()
 
     df = pd.read_excel(io.BytesIO(data))
-    # print(df.head())
+    print(df.head())
    
    
-    records = df.to_records(index=False).tolist()
+    # records = df.to_records(index=False).tolist()
     hook = PostgresHook(postgres_conn_id='postgre')
     connection = hook.get_conn()
     cursor = connection.cursor()
@@ -73,8 +73,8 @@ CREATE TABLE IF NOT EXISTS master.test1
 
 
 
-    insert_query = "INSERT INTO master.test (id,Frist_name,Last_name,Gender,Country,Age,Date) VALUES (%s,%s,%s,%s,%s,%s,%s)"
-    cursor.executemany(insert_query, records)
+    # insert_query = "INSERT INTO master.test (id,Frist_name,Last_name,Gender,Country,Age,Date) VALUES (%s,%s,%s,%s,%s,%s,%s)"
+    # cursor.executemany(insert_query, records)
     connection.commit()
     cursor.close()
     connection.close()
