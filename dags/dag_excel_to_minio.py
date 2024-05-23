@@ -46,7 +46,7 @@ def insert_to_postgres():
 
     response = client.get_object(bucket_name, file_name)
     data = response.read()
-    a=["First Name"]
+    a=["id","First Name"]
     df = pd.read_excel(io.BytesIO(data),usecols=a)
     print(df.head())
    
@@ -73,7 +73,7 @@ CREATE TABLE IF NOT EXISTS master.test1
 
 
 
-    insert_query = """INSERT INTO master.test1 ("Frist_name") VALUES (%s)"""
+    insert_query = """INSERT INTO master.test1 ("id","Frist_name") VALUES (%s,%s)"""
     cursor.executemany(insert_query, records)
     connection.commit()
     cursor.close()
