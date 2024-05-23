@@ -14,7 +14,7 @@ import io
 # )
 
 def read_file_from_minio():
-    conn = BaseHook.get_connection('minio')  # Menggunakan conn_id yang didefinisikan di UI Airflow
+    conn = BaseHook.get_connection('minio_2')  # Menggunakan conn_id yang didefinisikan di UI Airflow
     client = Minio(
         conn.host,
         access_key=conn.login,
