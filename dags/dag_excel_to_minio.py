@@ -51,7 +51,7 @@ def insert_to_postgres():
     print(df.head())
    
    
-    # records = df.to_records(index=False).tolist()
+    records = df.to_records(index=False).tolist()
     hook = PostgresHook(postgres_conn_id='postgre')
     connection = hook.get_conn()
     cursor = connection.cursor()
