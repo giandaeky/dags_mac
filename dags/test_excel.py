@@ -29,7 +29,7 @@ def read_excel_task():
 
 
 with DAG(
-    'dag excel git_tidak di rekomendasikan',
+    'dag excel git tidak di rekomendasikan',
     default_args=default_args,
     description='Contoh DAG untuk membaca file Excel dalam Airflow di Kubernetes dengan GitSync',
     schedule_interval=None,
