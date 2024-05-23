@@ -14,11 +14,11 @@ import io
 # )
 
 def read_file_from_minio():
-    # conn = BaseHook.get_connection('minio_2')  # Menggunakan conn_id yang didefinisikan di UI Airflow
+    conn = BaseHook.get_connection('minio_2')  
     client = Minio(
-        "10.111.24.253:9000",
-        access_key="dirumah",
-        secret_key="dirumah123",
+        conn.host,
+        access_key=conn.login,
+        secret_key=conn.password,
         secure=False  # Set to True if using HTTPS
     )
     bucket_name = "bucketrumah"
