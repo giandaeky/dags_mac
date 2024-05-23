@@ -46,8 +46,8 @@ def insert_to_postgres():
 
     response = client.get_object(bucket_name, file_name)
     data = response.read()
-    a=["id","First Name"]
-    df = pd.read_excel(io.BytesIO(data),usecols=a)
+    # a=["id","First Name"]
+    df = pd.read_excel(io.BytesIO(data))
     print(df.head())
    
    
