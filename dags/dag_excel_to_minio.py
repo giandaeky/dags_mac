@@ -55,6 +55,24 @@ def insert_to_postgres():
     hook = PostgresHook(postgres_conn_id='postgre')
     connection = hook.get_conn()
     cursor = connection.cursor()
+    cursor.execute("""
+   
+CREATE TABLE IF NOT EXISTS master.test1
+(
+    id integer NOT NULL,
+    "Frist_name" character varying(10) COLLATE pg_catalog."default",
+    "Last_name" character varying(10) COLLATE pg_catalog."default",
+    "Gender" character varying(6) COLLATE pg_catalog."default",
+    "Country" character varying(50) COLLATE pg_catalog."default",
+    "Age" integer,
+    "Date" date,
+    CONSTRAINT test_pkey PRIMARY KEY (id)
+)
+
+    """)
+
+
+
     insert_query = "INSERT INTO master.test (id,Frist_name,Last_name,Gender,Country,Age,Date) VALUES (%s,%s,%s,%s,%s,%s,%s)"
     cursor.executemany(insert_query, records)
     connection.commit()
