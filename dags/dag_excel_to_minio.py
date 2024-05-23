@@ -19,7 +19,7 @@ def read_file_from_minio():
         "10.111.24.253:9000",
         access_key=conn.login, 
         secret_key=conn.password,
-        # secure=
+        secure=False
     )
     bucket_name = "bucketrumah"
     file_name = "file_example_XLSX_10.xlsx"
