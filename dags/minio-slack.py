@@ -7,6 +7,7 @@ from slack_sdk import WebClient
 from slack_sdk.errors import SlackApiError
 import io
 
+from airflow.operators.dummy import DummyOperator
 
 
 default_args = {
@@ -31,6 +32,10 @@ dag = DAG(
 
 slack_channel = 'data-adalah-data'
 
+
+start_task = DummyOperator(task_id='start_task', dag=dag)
+
+end_task = DummyOperator(task_id='end_task', dag=dag)
  
 
 def get_minio_client():
