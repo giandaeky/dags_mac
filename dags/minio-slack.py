@@ -102,4 +102,4 @@ upload_task = PythonOperator(
     dag=dag,
 )
 
-start >> upload_task >> end
+start_task >> upload_task >> end_task
