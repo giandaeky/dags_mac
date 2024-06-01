@@ -67,18 +67,18 @@ def upload_files_to_slack():
     objects = client.list_objects(bucket_name, folder_path)
 
     def get_file_stream_from_minio(client, bucket_name, object_name):
-        try:
+        # try:
             response = client.get_object(bucket_name, object_name)
             file_data = response.read()
             response.close()
             response.release_conn()
             return io.BytesIO(file_data)
-        except Exception as e:
-            print(f"Error: {str(e)}")
-            return None
+        # except Exception as e:
+        #     print(f"Error: {str(e)}")
+        #     return None
 
     def upload_file_to_slack(slack_client, slack_channel, filesend, filename):
-        try:
+        
             response = slack_client.files_upload_v2(
                 channel=slack_channel,
                 file=filesend,
@@ -87,10 +87,10 @@ def upload_files_to_slack():
                 filename=filename
             )
             print(f"File uploaded to Slack successfully: {response['file']['id']}")
-        except SlackApiError as e:
-            print(f"Slack API Error: {e.response['error']}")
-        except Exception as e:
-            print(f"Error: {str(e)}")
+        # except SlackApiError as e:
+        #     print(f"Slack API Error: {e.response['error']}")
+        # except Exception as e:
+        #     print(f"Error: {str(e)}")
 
     
     for obj in objects:
