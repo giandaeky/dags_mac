@@ -77,7 +77,7 @@ def upload_files_to_slack():
 
     def upload_file_to_slack(slack_client, slack_channel, filesend, filename):
         
-            response = slack_client.files_upload(
+            response = slack_client.files_upload_v2(
                 channel=slack_channel,
                 file=filesend,
                 title=filename,
