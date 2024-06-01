@@ -15,7 +15,7 @@ dag = DAG(
 
 send_slack_message = SlackAPIPostOperator(
     task_id='send_message',
-    slack_conn_id='slack_conn',  
+    slack_conn_id='slack-conn',  
     # token='YOUR_SLACK_OAUTH_TOKEN', 
     channel='#general', 
     text='Hello from Airflow!',
