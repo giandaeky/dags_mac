@@ -32,8 +32,6 @@ dag = DAG(
 )
 
 
-slack_channel = 'data-adalah-data'
-
 
 start_task = DummyOperator(task_id='start_task', dag=dag)
 
@@ -91,6 +89,10 @@ def upload_files_to_slack():
         #     print(f"Slack API Error: {e.response['error']}")
         # except Exception as e:
         #     print(f"Error: {str(e)}")
+
+
+
+    slack_channel = '#data-adalah-data'
 
     
     for obj in objects:
