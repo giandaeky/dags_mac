@@ -41,7 +41,7 @@ end_task = DummyOperator(task_id='end_task', dag=dag)
  
 
 def get_minio_client():
-    conn = BaseHook.get_connection('minio_conn')
+    conn = BaseHook.get_connection('minio')
     
     client = Minio(
          "10.111.24.253:9000",
