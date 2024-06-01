@@ -52,7 +52,7 @@ def get_minio_client():
     return client
 
 def get_slack_client():
-    slack_conn = BaseHook.get_connection('slack_conn')
+    slack_conn = BaseHook.get_connection('slack-conn')
     extra = slack_conn.extra_dejson
 
     slack_client = WebClient(token=extra.get('token'))
